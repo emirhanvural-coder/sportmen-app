@@ -9,14 +9,15 @@ workflows:
         script: flutter pub get
       - name: Clean and Rebuild iOS Environment
         script: |
-          # Mac ortamında mevcut ios klasörünü temizle ve sıfırdan oluştur
           rm -rf ios
           flutter create --platforms=ios .
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
-          # iOS için derleme komutu
+          # Workspace'i açıkça belirtiyoruz ve modülleri bağlamasını sağlıyoruz
           flutter build ipa --release \
-            --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist \
+            --workspace=ios/Runner.xcworkspace \
+            --scheme=Runner
     artifacts:
       - build/ios/ipa/*.ipa
