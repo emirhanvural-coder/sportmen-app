@@ -1,13 +1,9 @@
 platform :ios, '13.0'
 
-# Flutter'ın kendi otomatik yükleyicisini kullanıyoruz
-# Bu yöntem, podhelper.rb dosyasının nerede olduğuna bakmaksızın 
-# Flutter'ın kendi iç mekanizmasıyla çalışır.
-require_relative '../.ios/Flutter/podhelper.rb'
-
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  
+
+  # Flutter'ın yükleme komutunu doğrudan çağırıyoruz
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
