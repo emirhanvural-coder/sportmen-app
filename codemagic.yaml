@@ -1,15 +1,15 @@
 workflows:
-  sportmen-ios-only: # İsmi sadece iOS olduğunu belli edecek şekilde değiştirdik
+  sportmen-ios-only:
     name: Sportmen iOS Build
     environment:
       flutter: stable
       xcode: latest
     scripts:
       - name: Get dependencies
-        script: flutter pub get
-      - name: Update iOS platform version
         script: |
-          sed -i '' "s/platform :ios, '.*'/platform :ios, '13.0'/g" ios/Podfile
+          flutter pub get
+          # Flutter'ın iOS dosyalarını hazırlamasını zorunlu tutuyoruz
+          flutter build ios --config-only
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
