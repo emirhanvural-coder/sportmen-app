@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "1054757545170",
+    "project_id": "spor-4cf48",
+    "storage_bucket": "spor-4cf48.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054757545170:android:2806d6b6d957435a7e790b",
+        "android_client_info": {
+          "package_name": "com.sportmen.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054757545170-aqu6phtbdvjphmg4jfc6ddirtusfjmvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sportmen.app",
+            "certificate_hash": "2a68c785678a98f30e74a969c3c05ec97a4278e1"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKk-VCJwRdNBPHX9bmKFJkxGY0km9GnH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
