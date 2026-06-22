@@ -1,0 +1,9 @@
+# Podfile içeriği (Bunu yeni oluşturduğun dosyaya yapıştır)
+platform :ios, '13.0'
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end

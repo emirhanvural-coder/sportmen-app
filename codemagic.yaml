@@ -4,14 +4,14 @@ workflows:
     environment:
       flutter: stable
       xcode: latest
-      # Build ortamı için JVM ayarları
-      GRADLE_OPTS: -Xmx4096m -XX:MaxMetaspaceSize=1024m
-      JVM_OPTS: -Xmx4096m
     scripts:
       - name: Get dependencies
         script: flutter pub get
+      - name: Update iOS platform version
+        # Podfile'daki platform sürümünü 13.0 olarak zorla güncelliyoruz
+        script: |
+          sed -i '' "s/platform :ios, '.*'/platform :ios, '13.0'/g" ios/Podfile
       - name: Build Android
-        # Buradaki --no-daemon flag'i bellek şişmesini engeller
         script: flutter build appbundle --release --no-daemon
       - name: Build iOS
         script: |
