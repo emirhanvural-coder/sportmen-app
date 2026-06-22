@@ -1,6 +1,6 @@
 workflows:
-  sportmen-ios-android:
-    name: Sportmen Build
+  sportmen-ios-only: # İsmi sadece iOS olduğunu belli edecek şekilde değiştirdik
+    name: Sportmen iOS Build
     environment:
       flutter: stable
       xcode: latest
@@ -8,15 +8,12 @@ workflows:
       - name: Get dependencies
         script: flutter pub get
       - name: Update iOS platform version
-        # Podfile'daki platform sürümünü 13.0 olarak zorla güncelliyoruz
         script: |
           sed -i '' "s/platform :ios, '.*'/platform :ios, '13.0'/g" ios/Podfile
-      - name: Build Android
-        script: flutter build appbundle --release --no-daemon
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
-          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+          flutter build ipa --release \
+            --export-options-plist=ios/ExportOptions.plist
     artifacts:
-      - build/app/outputs/bundle/release/*.aab
       - build/ios/ipa/*.ipa
