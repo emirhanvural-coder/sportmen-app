@@ -1,0 +1,18 @@
+workflows:
+  sportmen-ios-android:
+    name: Sportmen Build
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build Android
+        script: flutter build appbundle --release
+      - name: Build iOS
+        script: |
+          echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
+          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+    artifacts:
+      - build/app/outputs/bundle/release/*.aab
+      - build/ios/ipa/*.ipa
