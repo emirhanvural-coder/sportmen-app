@@ -4,11 +4,15 @@ workflows:
     environment:
       flutter: stable
       xcode: latest
+      # Build ortamı için JVM ayarları
+      GRADLE_OPTS: -Xmx4096m -XX:MaxMetaspaceSize=1024m
+      JVM_OPTS: -Xmx4096m
     scripts:
       - name: Get dependencies
         script: flutter pub get
       - name: Build Android
-        script: flutter build appbundle --release
+        # Buradaki --no-daemon flag'i bellek şişmesini engeller
+        script: flutter build appbundle --release --no-daemon
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
