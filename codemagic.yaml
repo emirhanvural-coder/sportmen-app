@@ -11,10 +11,15 @@ workflows:
         script: |
           rm -rf ios
           flutter create --platforms=ios .
+      - name: Force Pod Install and Podfile check
+        script: |
+          cd ios
+          pod deintegrate
+          pod install --repo-update
+          cd ..
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
-          # Workspace'i açıkça belirtiyoruz ve modülleri bağlamasını sağlıyoruz
           flutter build ipa --release \
             --export-options-plist=ios/ExportOptions.plist \
             --workspace=ios/Runner.xcworkspace \
