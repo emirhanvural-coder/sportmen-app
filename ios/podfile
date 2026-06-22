@@ -1,9 +1,13 @@
+eval(File.read(File.join(File.dirname(__FILE__), '../.ios/Flutter/podhelper.rb')))
 platform :ios, '13.0'
+
+# Flutter'ın podhelper dosyasını doğrudan yoluyla yüklüyoruz
+require_relative '../.ios/Flutter/podhelper.rb'
 
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  # Flutter'ın yükleme komutunu doğrudan çağırıyoruz
-  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  # Flutter paketlerini yükle
+  flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
 end

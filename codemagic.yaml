@@ -8,9 +8,7 @@ workflows:
       - name: Get dependencies
         script: |
           flutter pub get
-      - name: Prepare iOS dependencies
-        # Burası kilit nokta: Podhelper'ı oluşturmaya zorluyoruz
-        script: |
+          # Podhelper dosyasını garantiye alıyoruz
           flutter build ios --config-only
       - name: Build iOS
         script: |
