@@ -4,6 +4,13 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  # Flutter otomatik olarak bu dosyayı bulacaktır
-  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  # Flutter'ın podhelper dosyasını dinamik olarak bulup yükle
+  flutter_podhelper_path = File.join(File.dirname(File.realpath(__FILE__)), '../.ios/Flutter/podhelper.rb')
+  
+  if File.exist?(flutter_podhelper_path)
+    load flutter_podhelper_path
+    flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
+  else
+    puts "Uyarı: podhelper.rb bulunamadı, Flutter yapılandırması kontrol edilmeli."
+  end
 end
