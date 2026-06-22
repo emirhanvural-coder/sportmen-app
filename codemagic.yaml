@@ -7,14 +7,15 @@ workflows:
     scripts:
       - name: Get dependencies
         script: flutter pub get
-      - name: Force Rebuild iOS Configuration
-        # Windows'taki dosyaları bozmadan, Mac üzerinde iOS klasörünü sıfırlıyoruz
+      - name: Recreate iOS Directory
+        # Windows'taki dosyalarına dokunmuyoruz, sadece Mac'te temizliyoruz
         script: |
           rm -rf ios
           flutter create --platforms=ios .
       - name: Build iOS
         script: |
           echo $FIREBASE_SERVICE_ACCOUNT > service-account.json
+          # Artık podhelper.rb yolunu elle belirtmemize gerek yok
           flutter build ipa --release \
             --export-options-plist=ios/ExportOptions.plist
     artifacts:
